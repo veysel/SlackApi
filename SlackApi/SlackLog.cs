@@ -47,7 +47,7 @@ namespace SlackApi
         /// <param name="ProjectName"></param>
         public static void Default(string TypeText, string ContentText, string ProjectName)
         {
-            Log(new SlackModel { AuthorName = TypeText, Text = ContentText, Footer = $"{ProjectName} | {DateTime.Now.ToString()}" });
+            Log(new SlackModel { Title = TypeText, Text = ContentText, Footer = $"{ProjectName} | {DateTime.Now.ToString()}" });
         }
     }
 }
