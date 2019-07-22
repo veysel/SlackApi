@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 
 namespace SlackApi
 {
@@ -13,24 +14,25 @@ namespace SlackApi
     {
 
         /// <summary>
-        /// Private Log Method
+        /// Private Log Method.
         /// </summary>
         /// <param name="slackModel"></param>
-        private static void Log(SlackModel slackModel)
+        /// <returns>HttpResponseMessage</returns>
+        private static HttpResponseMessage Log(SlackModel slackModel)
         {
             try
             {
-                if (!string.IsNullOrEmpty(SlackConfig.ApiUrl))
+                using (HttpClient client = new HttpClient())
                 {
-                    List<SlackModel> attachments = new List<SlackModel>();
-                    attachments.Add(slackModel);
+                    slackModel.Footer = $"{slackModel.Footer} | {DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss")}";
 
-                    StringContent queryString = new StringContent(JsonConvert.SerializeObject(attachments));
+                    object model = new { attachments = new List<SlackModel> { slackModel } };
 
-                    using (HttpClient client = new HttpClient())
-                    {
-                        client.PostAsync(SlackConfig.ApiUrl, queryString);
-                    }
+                    var stringContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+
+                    var response = client.PostAsync(SlackConfig.ApiUrl, stringContent).Result;
+
+                    return response;
                 }
             }
             catch (Exception exp)
@@ -40,14 +42,63 @@ namespace SlackApi
         }
 
         /// <summary>
-        /// Slack Log For Default View
+        /// Slack Log Default Method.
         /// </summary>
-        /// <param name="TypeText"></param>
         /// <param name="ContentText"></param>
+        /// <param name="Title"></param>
         /// <param name="ProjectName"></param>
-        public static void Default(string TypeText, string ContentText, string ProjectName)
+        /// <returns>HttpResponseMessage</returns>
+        public static HttpResponseMessage Default(string ContentText, string Title = "Default", string ProjectName = "Slack Api")
         {
-            Log(new SlackModel { Title = TypeText, Text = ContentText, Footer = $"{ProjectName} | {DateTime.Now.ToString()}" });
+            return Log(new SlackModel { Text = ContentText, Title = Title, Footer = ProjectName });
+        }
+
+        /// <summary>
+        /// Slack Log Success Method.
+        /// </summary>
+        /// <param name="ContentText"></param>
+        /// <param name="Title"></param>
+        /// <param name="ProjectName"></param>
+        /// <returns>HttpResponseMessage</returns>
+        public static HttpResponseMessage Success(string ContentText, string Title = "Success", string ProjectName = "Slack Api")
+        {
+            return Log(new SlackModel { Color = "good", Text = ContentText, Title = Title, Footer = ProjectName });
+        }
+
+        /// <summary>
+        /// Slack Log Warning Method.
+        /// </summary>
+        /// <param name="ContentText"></param>
+        /// <param name="Title"></param>
+        /// <param name="ProjectName"></param>
+        /// <returns>HttpResponseMessage</returns>
+        public static HttpResponseMessage Warning(string ContentText, string Title = "Warning", string ProjectName = "Slack Api")
+        {
+            return Log(new SlackModel { Color = "warning", Text = ContentText, Title = Title, Footer = ProjectName });
+        }
+
+        /// <summary>
+        /// Slack Log Danger Method.
+        /// </summary>
+        /// <param name="ContentText"></param>
+        /// <param name="Title"></param>
+        /// <param name="ProjectName"></param>
+        /// <returns>HttpResponseMessage</returns>
+        public static HttpResponseMessage Danger(string ContentText, string Title = "Danger", string ProjectName = "Slack Api")
+        {
+            return Log(new SlackModel { Color = "danger", Text = ContentText, Title = Title, Footer = ProjectName });
+        }
+
+        /// <summary>
+        /// Slack Log Info Method.
+        /// </summary>
+        /// <param name="ContentText"></param>
+        /// <param name="Title"></param>
+        /// <param name="ProjectName"></param>
+        /// <returns>HttpResponseMessage</returns>
+        public static HttpResponseMessage Info(string ContentText, string Title = "Info", string ProjectName = "Slack Api")
+        {
+            return Log(new SlackModel { Color = "#439FE0", Text = ContentText, Title = Title, Footer = ProjectName });
         }
     }
 }
