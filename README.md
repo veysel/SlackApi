@@ -4,6 +4,12 @@
 
 <br>
 
+### Dependencies
+
+*  [Newtonsoft.Json](https://www.newtonsoft.com/json)
+
+<br>
+
 ## How to use ?
 
 ### Add Reference
