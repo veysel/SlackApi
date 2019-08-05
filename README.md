@@ -2,11 +2,15 @@
 
 > Slack Api is a .net standard library that is very simple and fast to use.
 
+<br>
+
 ## How to use ?
 
 ### Add Reference
 
 > Add Reference SlackApi.dll
+
+<br>
 
 ### Import Project
 
@@ -14,11 +18,15 @@
 using SlackApi;
 ```
 
+<br>
+
 ### Slack Url Define
 
 ```c#
 SlackConfig.ApiUrl = "https://hooks.slack.com/services/Txxxxxxxx/Bxxxxxxxx/Axxxxxxxxxxxxxxxxxxxxxxx";
 ```
+
+<br>
 
 ### Slack Log Send
 
@@ -43,6 +51,8 @@ SlackLog.Danger("Content");
 SlackLog.Danger("Content", "Title");
 SlackLog.Danger("Content", "Title", "Project Name");
 ```
+
+<br>
 
 ### Sample Results
 
