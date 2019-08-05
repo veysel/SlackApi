@@ -43,3 +43,7 @@ SlackLog.Danger("Content");
 SlackLog.Danger("Content", "Title");
 SlackLog.Danger("Content", "Title", "Project Name");
 ```
+
+### Sample Results
+
+![SlackApiSample](https://raw.githubusercontent.com/veysel/SlackApi/master/content/sample1.png)
