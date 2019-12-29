@@ -2,10 +2,31 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>SlackApi.Log</PackageId>
+    <Authors>veysel</Authors>
+    <Company>veysel</Company>
+    <Description>Slack Api is a .net standard library that is very simple and fast to use.</Description>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageIconUrl />
+    <Product>SlackApi.Log</Product>
+    <RepositoryUrl>https://github.com/veysel/SlackApi</RepositoryUrl>
+    <RepositoryType />
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\content\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
