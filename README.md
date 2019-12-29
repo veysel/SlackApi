@@ -1,4 +1,6 @@
-# Slack Api
+[![NuGet version](https://badge.fury.io/nu/SlackApi.Log.svg)](https://www.nuget.org/packages/SlackApi.Log/)
+
+# ![SlackApi.Log](./content/logo.png) SlackApi.Log
 
 > Slack Api is a .net standard library that is very simple and fast to use.
 
@@ -12,11 +14,15 @@
 
 ## How to use ?
 
-### Add Reference
+### Install SlackApi.Log
 
-> Download Dll "https://github.com/veysel/SlackApi/blob/master/content/SlackApi.dll?raw=true"
->
-> Add Reference SlackApi.dll
+```
+Install-Package SlackApi.Log
+
+or
+
+dotnet add package SlackApi.Log
+```
 
 <br>
 
